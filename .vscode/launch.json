@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "d:/B Tech CSE/Teaching Assistance/Sem 2/CP-2/c-programming-2/Lab_8",
+      "program": "d:/B Tech CSE/Teaching Assistance/Sem 2/CP-2/c-programming-2/Lab_8/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
