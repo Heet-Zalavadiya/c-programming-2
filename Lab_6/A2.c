@@ -59,6 +59,5 @@ void main()
     printf("Title: %s\n", b3.title);
     printf("Author: %s\n", b3.author);
     printf("Publication: %s\n", b3.publication);
-    printf("Price: %.2f\n", b3.price);m
+    printf("Price: %.2f\n", b3.price);
 }
-
