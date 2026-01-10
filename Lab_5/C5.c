@@ -12,10 +12,13 @@ void main() {
 }
 
 int reverseNumber(int n, int rev) {
-	if (n == 0) {
-		return rev;
-	}
-	return reverseNumber(n/10,rev * 10 + (n % 10));
+	 if(n == 0){
+        return rev;
+    }
+    else{
+        rev = rev * 10 + (n % 10);
+        return reverseNumber(n / 10, rev);
+    }
 }
 
 //int reverseNumber(int n) {
@@ -26,5 +29,5 @@ int reverseNumber(int n, int rev) {
 //    }
 //    rev = rev * 10 + (n % 10);
 //
-//    return reverse(n / 10);
+//    return reverseNumber(n / 10);
 //}
