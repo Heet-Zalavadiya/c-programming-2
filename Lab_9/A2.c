@@ -9,6 +9,5 @@ void main()
     float *pb = &b;
     double *pc = &c;
     char *pd = &d;
-    printf("int=%d at %p\nfloat=%f at %p\ndouble=%f at %p\nchar=%c at %p\n", *pa, (void *)pa, *pb, (void *)pb, *pc, (void *)pc, *pd, (void *)pd);
+    printf("int=%d at %u\nfloat=%f at %u\ndouble=%f at %u\nchar=%c at %u\n", *pa, pa, *pb, pb, *pc, pc, *pd, pd);
 }
-

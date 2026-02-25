@@ -6,5 +6,5 @@ void main()
 
     int *ptr;
     ptr = &x;
-    printf("Value = %d, Address = %p\n", *ptr, ptr);
+    printf("Value = %d, Address = %u\n", *ptr, ptr);
 }
