@@ -1,35 +1,44 @@
-#include<stdio.h>
+#include <stdio.h>
 
 int main()
 {
-    FILE *fptr;
+    FILE *fp;
     char ch;
 
-    // Open file in read mode
-    fptr = fopen("hello.txt","r");
+    // Open file in w+ mode (create + read/write)
+    fp = fopen("demo.txt", "w+");
 
-    if(fptr == NULL)
+    if (fp == NULL)
     {
-        printf("File not found\n");
+        printf("File error!\n");
         return 1;
     }
 
-    // Move file pointer to 5th position from beginning
-    fseek(fptr,5,SEEK_SET);
+    // Write data
+    fprintf(fp, "Hello World");
 
-    // Read character at that position
-    ch = fgetc(fptr);
-    printf("Character after fseek: %c\n",ch);
+    // Move pointer to 6th position using fseek
+    fseek(fp, 6, SEEK_SET);
 
-    // Move pointer back to beginning
-    rewind(fptr);
+    printf("After fseek:\n");
+    while (!feof(fp))
+    {
+        ch = fgetc(fp);
+        if (ch != EOF)
+            printf("%c", ch);
+    }
 
-    // Read first character again
-    ch = fgetc(fptr);
-    printf("First character after rewind: %c\n",ch);
+    // Move pointer back to beginning using rewind
+    rewind(fp);
 
-    // Close file
-    fclose(fptr);
+    printf("\n\nAfter rewind:\n");
+    while (!feof(fp))
+    {
+        ch = fgetc(fp);
+        if (ch != EOF)
+            printf("%c", ch);
+    }
 
+    fclose(fp);
     return 0;
 }

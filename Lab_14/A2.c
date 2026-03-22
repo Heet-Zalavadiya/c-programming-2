@@ -1,26 +1,34 @@
 #include <stdio.h>
 
-void main()
+int main()
 {
     FILE *fp;
-    char ch;
-    int num;
+    char ch, name[10];
+    int age;
 
-    fp = fopen("data.txt", "w+");
+    // Open file for writing
+    fp = fopen("file.txt", "w");
 
-    fprintf(fp, "Number: %d\n", 100);  // write formatted data
-    fputc('A', fp);                    // write single character
-
-    rewind(fp);                        // move pointer to start
-
-    fscanf(fp, "Number: %d", &num);    // read formatted data
-    printf("Read number: %d\n", num);
-
-    fseek(fp, 0, SEEK_END);
-    fseek(fp, -1, SEEK_CUR);
-
-    ch = fgetc(fp);                    // read single character
-    printf("Read character: %c\n", ch);
+    // fprintf() and fputc()
+    fprintf(fp, "Ram 18\n");
+    fputc('A', fp);
 
     fclose(fp);
+
+    // Open file for reading
+    fp = fopen("file.txt", "r");
+
+    // fscanf()
+    fscanf(fp, "%s %d", name, &age);
+    printf("Name: %s Age: %d\n", name, age);
+
+    // fgetc()
+    while ((ch = fgetc(fp)) != EOF)
+    {
+        printf("%c", ch);
+    }
+
+    fclose(fp);
+
+    return 0;
 }

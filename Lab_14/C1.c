@@ -1,34 +1,41 @@
-#include<stdio.h>
+#include <stdio.h>
 
 int main()
 {
-    FILE *source, *target;
+    FILE *fp1, *fp2;
     char ch;
 
-    // Open source file in read mode
-    source = fopen("source.txt","r");
+    // Open source file
+    fp1 = fopen("source.txt", "r");
 
-    // Open target file in write mode
-    target = fopen("target.txt","w");
-
-    // Check if files opened successfully
-    if(source == NULL || target == NULL)
+    if (fp1 == NULL)
     {
-        printf("Error opening file\n");
+        printf("Source file not found!\n");
         return 1;
     }
 
-    // Read characters from source and write to target
-    while((ch = fgetc(source)) != EOF)
+    // Open destination file
+    fp2 = fopen("dest.txt", "w");
+
+    if (fp2 == NULL)
     {
-        fputc(ch,target);
+        printf("Cannot create destination file!\n");
+        return 1;
     }
 
-    printf("File copied successfully\n");
+    // Copy using feof()
+    while (!feof(fp1))
+    {
+        ch = fgetc(fp1);
+        if (ch != EOF)
+            fputc(ch, fp2);
+    }
 
-    // Close both files
-    fclose(source);
-    fclose(target);
+    printf("File copied successfully!\n");
+
+    // Close files
+    fclose(fp1);
+    fclose(fp2);
 
     return 0;
 }
