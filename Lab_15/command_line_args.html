@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Language: Command Line Arguments</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #16a085;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .concept-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 15px;
+        }
+        code {
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #c0392b;
+        }
+        .step-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .step-list li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #e67e22;
+        }
+        .step-number {
+            font-weight: bold;
+            color: #e67e22;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Command Line Arguments in C</h1>
+
+    <div class="concept-box">
+        <strong>What are Command Line Arguments?</strong>
+        <p>Command line arguments are values passed to a C program from the operating system's command line (or via the IDE) at the time of execution. They allow you to control the behavior of your program from the outside without hardcoding values or requiring user input via <code>scanf</code>.</p>
+    </div>
+
+    <h2>1. The Syntax</h2>
+    <p>To accept command-line arguments, the <code>main()</code> function must be defined with two specific arguments: <code>argc</code> and <code>argv</code>.</p>
+    
+    <pre><code>int main(int argc, char *argv[]) {
+    // Program logic here
+    return 0;
+}</code></pre>
+
+    <h3>Understanding the Parameters:</h3>
+    <ul>
+        <li><strong><code>int argc</code> (Argument Count):</strong> This integer stores the total number of arguments passed to the program. The program name itself is always counted as the first argument, so <code>argc</code> is always at least 1.</li>
+        <li><strong><code>char *argv[]</code> (Argument Vector):</strong> This is an array of string pointers. Each element points to a command-line argument passed.
+            <ul>
+                <li><code>argv[0]</code> points to the name of the program/executable.</li>
+                <li><code>argv[1]</code> points to the first argument provided by the user.</li>
+                <li><code>argv[n]</code> points to the nth argument.</li>
+                <li><code>argv[argc]</code> is always a NULL pointer.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>2. Example Program</h2>
+    <p>Here is a basic C program that prints all the arguments passed to it.</p>
+
+    <pre><code>#include &lt;stdio.h&gt;
+
+int main(int argc, char *argv[]) {
+    int i;
+    
+    printf("Total arguments passed: %d\n", argc);
+    
+    // Loop through the argv array to print each argument
+    for(i = 0; i < argc; i++) {
+        printf("Argument %d: %s\n", i, argv[i]);
+    }
+    
+    return 0;
+}</code></pre>
+
+    <h2>3. How to Pass Arguments in Dev-C++</h2>
+    <p>Normally, command line arguments are passed using a terminal or command prompt (e.g., <code>program.exe arg1 arg2</code>). However, Dev-C++ provides a built-in way to simulate this directly within the IDE.</p>
+    
+    <ul class="step-list">
+        <li>
+            <span class="step-number">Step 1: Write and Save</span>
+            Copy the example code above into a new Dev-C++ source file. Save it as <code>cmd_args.c</code>.
+        </li>
+        <li>
+            <span class="step-number">Step 2: Compile the Program</span>
+            Press <strong>F9</strong> (or go to <em>Execute -> Compile</em>) to compile your code into an executable file. This must be done before passing parameters.
+        </li>
+        <li>
+            <span class="step-number">Step 3: Open Parameters Menu</span>
+            Go to the top menu bar, click on <strong>Execute</strong>, and then select <strong>Parameters...</strong> from the dropdown menu.
+        </li>
+        <li>
+            <span class="step-number">Step 4: Enter Your Arguments</span>
+            A dialog box will appear. In the text field labeled "Parameters to pass to your program", type your arguments separated by spaces. <br>
+            <em>Example:</em> <code>apple banana 123</code> <br>
+            Click <strong>OK</strong>.
+        </li>
+        <li>
+            <span class="step-number">Step 5: Run the Program</span>
+            Press <strong>F10</strong> (or go to <em>Execute -> Run</em>) to run the program.
+        </li>
+    </ul>
+
+    <h3>Expected Output based on Step 4:</h3>
+    <pre><code>Total arguments passed: 4
+Argument 0: C:\Users\YourName\Documents\cmd_args.exe
+Argument 1: apple
+Argument 2: banana
+Argument 3: 123</code></pre>
+
+    <div class="concept-box">
+        <strong>Important Note on Data Types:</strong>
+        <p>All command-line arguments are read as <strong>strings</strong> (character arrays). If you pass a number like <code>100</code>, it is treated as the string <code>"100"</code>. To perform math operations on numerical arguments, you must convert them to integers or floats using functions like <code>atoi()</code> (ASCII to Integer) or <code>atof()</code> (ASCII to Float) from the <code>&lt;stdlib.h&gt;</code> library.</p>
+    </div>
+
+</body>
+</html>
